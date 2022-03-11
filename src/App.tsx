@@ -7,6 +7,10 @@ import { RepositoryCard } from "./UI/RepositoryCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRepos, SetRepos, StateType } from "./store/reposReducer";
 import { AppRootStateType } from "./store";
+import { Input } from "@alfalab/core-components/input";
+import { GetCards } from "./components/GetCards";
+import { Route, Routes, useParams } from "react-router-dom";
+import { CardPage } from "./components/CardPage";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +21,7 @@ function App() {
   const isSearching2 = useSelector<AppRootStateType, boolean>(
     (state) => state.reposReducer.isSearching
   );
-  const results2 = useSelector<AppRootStateType, ItemType[]>(
+  const results = useSelector<AppRootStateType, ItemType[]>(
     (state) => state.reposReducer.items
   );
 
@@ -28,24 +32,16 @@ function App() {
       dispatch(SetRepos([] as ItemType[]));
     }
   }, [debouncedSearchTerm, dispatch]);
-
+  let { id } = useParams();
   return (
     <div>
       <div>
-        <input
-          placeholder="Search Request"
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
       </div>
       <div>
-        {isSearching2 && <div>Searching ...</div>}
-        {results2.map((item: ItemType) => {
-          return (
-            <div key={uuidv4()}>
-              <RepositoryCard>{item}</RepositoryCard>
-            </div>
-          );
-        })}
+        <Routes>
+          <Route path="/" element={<GetCards repos={results} onChangeHandler={setSearchTerm}/>} />
+          <Route path="/:id" element={<CardPage />} />
+        </Routes>
       </div>
     </div>
   );
