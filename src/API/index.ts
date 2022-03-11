@@ -7,7 +7,7 @@ const instance = axios.create({
 });
 
 export const API = {
-  getUsers(searchRequest: string) {
+  getRepos(searchRequest: string) {
     return instance.get(searchRequest);
   },
 };
@@ -22,6 +22,9 @@ export type ItemType = {
   html_url: string;
   description: string;
   watchers: number;
+  ssh_url: string;
+  clone_url: string;
+  created_at: string;
 };
 export type ResponseType = {
   data: {
@@ -32,4 +35,3 @@ export type ResponseType = {
   status: number;
   statusText: string;
 };
-

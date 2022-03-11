@@ -11,6 +11,7 @@ export const IMG = styled.img`
   width: auto;
   border-radius: 50%;
 
+
   @media (orientation: landscape) {
     height: 10vw;
   }
@@ -21,6 +22,8 @@ export const IMG = styled.img`
 `;
 
 export const IMGSContent = styled(common.column)`
+  text-align: center;
+
   @media (orientation: landscape) {
     width: 12vw;
   }
