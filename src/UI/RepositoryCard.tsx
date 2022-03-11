@@ -1,7 +1,8 @@
 import { ItemType } from "../API";
-import { Typography } from "@alfalab/core-components/typography";
-import { Link } from "@alfalab/core-components/link";
+import { Button } from "@alfalab/core-components/button";
 import * as style from "./style";
+import * as commonStyle from "../common";
+import { AiFillGithub } from 'react-icons/ai';
 
 type Props = {
   children: ItemType;
@@ -10,31 +11,27 @@ type Props = {
 export const RepositoryCard: React.FC<Props> = ({ children }: Props) => {
   return (
     <style.Card>
-      <div>
+      <style.IMGSContent>
         <style.IMG src={children.owner.avatar_url} alt={children.full_name} />
-      </div>
-      <style.Data>
-        <div>
-          <Typography.TitleResponsive
-            view={"medium"}
-            key={children.full_name}
-            tag="div"
-          >
-            {children.full_name}
-          </Typography.TitleResponsive>
-        </div>
-        <div>{children.description}</div>
-        <div>
-          <Link
-            view={"default"}
-            rel={"noopener"}
-            target={"_blank"}
-            href={children.html_url}
-          >
+      </style.IMGSContent>
+      <style.TextContent>
+        <commonStyle.respTypography size={6}>
+          {children.full_name}
+        </commonStyle.respTypography>
+        <commonStyle.respTypography size={4}>
+          {children.description}
+        </commonStyle.respTypography>
+        <style.Buttons>
+          <Button size={"xxs"} view="secondary">
             Learn More
-          </Link>
-        </div>
-      </style.Data>
+          </Button>
+          <Button
+            rightAddons={<AiFillGithub />}
+            view={"secondary"}
+            size={"xxs"}
+          />
+        </style.Buttons>
+      </style.TextContent>
     </style.Card>
   );
 };
