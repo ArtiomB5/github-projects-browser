@@ -5,6 +5,7 @@ const initialState = {
   total_count: 0,
   items: [] as ItemType[],
   isSearching: false,
+  sortHightLow: true,
 };
 
 export const reposReducer = (
@@ -18,6 +19,24 @@ export const reposReducer = (
       return { ...state, total_count: action.payload };
     case "SET_SEARCHING":
       return { ...state, isSearching: action.payload };
+    case "SET_BY_DATE":
+      const deepCopyItems = state.items.map((i: ItemType) => {
+        return { ...i, owner: { ...i.owner } };
+      });
+      const filteredArray = deepCopyItems.sort((a, b) => {
+        const dateA = new Date(a.created_at).valueOf();
+        const dateB = new Date(b.created_at).valueOf();
+        if (action.payload) {
+          return dateA - dateB;
+        } else {
+          return dateB - dateA;
+        }
+      });
+      return {
+        ...state,
+        items: filteredArray,
+        sortHightLow: action.payload,
+      };
     default:
       return state;
   }
@@ -30,16 +49,23 @@ export const SetRepos = (payload: ItemType[]) => {
   } as const;
 };
 
-const SetTotalCount = (payload: number) => {
+export const SetTotalCount = (payload: number) => {
   return {
     type: "SET_TOTAL_COUNT",
     payload,
   } as const;
 };
 
-const SetIsSearching = (payload: boolean) => {
+export const SetIsSearching = (payload: boolean) => {
   return {
     type: "SET_SEARCHING",
+    payload,
+  } as const;
+};
+
+export const SortByDate = (payload: boolean) => {
+  return {
+    type: "SET_BY_DATE",
     payload,
   } as const;
 };
@@ -60,11 +86,13 @@ export type StateType = {
   total_count: number;
   items: ItemType[];
   isSearching: boolean;
+  sortHightLow: boolean;
 };
 
 type ActionType =
   | ReturnType<typeof SetRepos>
   | ReturnType<typeof SetTotalCount>
-  | ReturnType<typeof SetIsSearching>;
+  | ReturnType<typeof SetIsSearching>
+  | ReturnType<typeof SortByDate>;
 
 type ThunkDispatch = ActionType;

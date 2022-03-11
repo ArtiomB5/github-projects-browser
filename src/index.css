@@ -1,3 +1,25 @@
+@font-face {
+    font-family: 'Styrene UI';
+    src: url('https://alfabank.gcdn.co/media/fonts/styrene-ui/styrene-ui_regular.woff2') format('woff2'),
+         url('https://alfabank.gcdn.co/media/fonts/styrene-ui/styrene-ui_regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Styrene UI';
+    src: url('https://alfabank.gcdn.co/media/fonts/styrene-ui/styrene-ui_medium.woff2') format('woff2'),
+         url('https://alfabank.gcdn.co/media/fonts/styrene-ui/styrene-ui_medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Styrene UI';
+    src: url('https://alfabank.gcdn.co/media/fonts/styrene-ui/styrene-ui_bold.woff2') format('woff2'),
+         url('https://alfabank.gcdn.co/media/fonts/styrene-ui/styrene-ui_bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -30,6 +52,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: 'Styrene UI';
 }
 ol, ul {
 	list-style: none;
@@ -46,3 +69,4 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+

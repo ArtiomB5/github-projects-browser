@@ -1,23 +1,11 @@
 import styled from "styled-components";
-import * as common from "../common";
+import * as common from "../../common";
 
 export const Card = styled(common.row)`
   border: 1px solid #485767;
   margin: 5px;
   border-radius: 15px;
-`;
-
-export const IMG = styled.img`
-  width: auto;
-  border-radius: 50%;
-
-  @media (orientation: landscape) {
-    height: 10vw;
-  }
-
-  @media (orientation: portrait) {
-    height: 18vw;
-  }
+  width: 100%;
 `;
 
 export const IMGSContent = styled(common.column)`
@@ -38,11 +26,11 @@ export const TextContent = styled(common.column)`
   word-wrap: break-word;
 
   @media (orientation: landscape) {
-    width: calc(100vw - 12vw);
+    width: calc(100% - 12vw);
   }
 
   @media (orientation: portrait) {
-    width: calc(100vw - 20vw);
+    width: calc(100% - 20vw);
   }
 `;
 
