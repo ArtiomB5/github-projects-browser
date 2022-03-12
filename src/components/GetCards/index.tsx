@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../store";
 import { Loader } from "@alfalab/core-components/loader";
 import * as style from "./style";
-import { SortByDate } from "../../store/reposReducer";
+import { sortByDate } from "../../store/reposReducer";
 import { BiSortDown, BiSortUp } from "react-icons/bi";
 
 type Props = {
@@ -42,24 +42,19 @@ export const GetCards: React.FC<Props> = ({ repos, onChangeHandler }) => {
         {repos.length > 0 && (
           <style.Row>
             {!sorting && (
-              <Button onClick={() => dispatch(SortByDate(true))} size={"s"}>
+              <Button onClick={() => dispatch(sortByDate(true))} size={"s"}>
                 <BiSortUp />
               </Button>
             )}
             {sorting && (
-              <Button onClick={() => dispatch(SortByDate(false))} size={"s"}>
+              <Button onClick={() => dispatch(sortByDate(false))} size={"s"}>
                 <BiSortDown />
               </Button>
             )}
           </style.Row>
         )}
       </style.Column>
-
-      {isSearching && (
-        <div>
-          <Loader />
-        </div>
-      )}
+      {isSearching && <Loader />}
       {!isSearching && (
         <>
           {repos.map((r) => (

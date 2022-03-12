@@ -3,7 +3,7 @@ import * as style from "./AppStyle";
 import { useDebounce } from "./hooks/useDebounce";
 import { ItemType } from "./API";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRepos, SetRepos } from "./store/reposReducer";
+import { fetchRepos, setRepos } from "./store/reposReducer";
 import { AppRootStateType } from "./store";
 import { GetCards } from "./components/GetCards";
 import { Route, Routes } from "react-router-dom";
@@ -24,7 +24,7 @@ function App() {
     if (debouncedSearchTerm) {
       dispatch(fetchRepos(debouncedSearchTerm));
     } else {
-      dispatch(SetRepos([] as ItemType[]));
+      dispatch(setRepos([] as ItemType[]));
     }
   }, [debouncedSearchTerm, dispatch]);
   return (
