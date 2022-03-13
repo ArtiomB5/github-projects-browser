@@ -24,6 +24,11 @@ const counterSlice = createSlice({
     },
     sortByDate(state, action: {payload: boolean}) {
       state.sortHightLow = action.payload;
+      state.items = state.items.sort((a, b) => {
+        const DateA = new Date(a.created_at).valueOf();
+        const DateB = new Date(b.created_at).valueOf();
+        return state.sortHightLow ? DateA - DateB : DateB - DateA;
+      })
     },
   },
 })
